@@ -35,6 +35,12 @@ export function Header() {
           <a href="#how-it-works" className="text-sm hover:text-white/80">
             How It Works
           </a>
+          <a href="#explore" className="text-sm hover:text-white/80">
+            Explore
+          </a>
+          <a href="#testimonials" className="text-sm hover:text-white/80">
+            Testimonials
+          </a>
           <button className="px-4 py-2 bg-white/10 hover:bg-white/20 border border-white/20 rounded-full text-sm">
             Get Started
           </button>
