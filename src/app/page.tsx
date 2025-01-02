@@ -15,13 +15,14 @@ export default function Home() {
         
         {/* Hero Section */}
         <BackgroundGradientAnimation>
-          <div className="absolute z-50 inset-0 flex flex-col items-center justify-center text-white font-bold px-4 pointer-events-none text-3xl text-center md:text-4xl lg:text-7xl">
-            <p className="bg-clip-text text-transparent drop-shadow-2xl bg-gradient-to-b from-white/80 to-white/20">
+          <div className="absolute z-50 inset-0 flex flex-col items-center justify-center text-white font-bold px-4 pointer-events-none text-center">
+            <p className="bg-clip-text text-transparent drop-shadow-2xl bg-gradient-to-b from-white to-white/20 text-3xl md:text-4xl lg:text-3xl mb-10">
               OrbiVerse
             </p>
-            <p className="text-white/60 font-normal text-base md:text-lg lg:text-xl mt-4">
+            <p className="bg-c text-white/80 font-bold text-base md:text-lg lg:text-7xl mt-4 w-[50vw]">
               Your Life, Your Orbs, Your Universe.
             </p>
+            <p className="w-[50vw] text-white font-normal text-base md:text-lg lg:text-xl mt-4">Orbiverse is a decentralized time capsule dApp that allows you to store, secure, and relive your cherished memories as vibrant orbs powered by blockchain technology.</p>
             {/* CTA Button - remove pointer-events-none from parent to make this clickable */}
             <button className="pointer-events-auto mt-8 px-6 py-3 bg-white/10 hover:bg-white/20 border border-white/20 rounded-full text-base font-normal flex items-center justify-center">
               Get Started
@@ -37,7 +38,7 @@ export default function Home() {
             </h2>
             <div className="relative flex flex-row justify-center">
               {/* Add Spline viewer as a background */}
-              <div className="w-full h-[500px] z-[1] absolute">
+              <div className="w-full h-[500px] absolute">
                 <SplineViewer
                   url="https://prod.spline.design/bsKVBJe8ZeafTv8B/scene.splinecode"
                   className="w-full h-full"
@@ -48,9 +49,9 @@ export default function Home() {
                 {features.map((feature, index) => (
                   <div
                     key={index}
-                    className="p-6 rounded-lg bg-white/5 backdrop-blur-md border max-w-80 border-white/10 hover:border-white/20 transition-all"
+                    className="hover:translate-y-[-5px] brightness-125 p-6 rounded-lg bg-white/5 backdrop-blur-md border max-w-80 border-white/10 hover:border-white/20 transition-all"
                   >
-                    <div className="w-12 h-12 mb-4 rounded-full bg-primary/10 flex items-center justify-center">
+                    <div className="w-12 h-12 mb-4 rounded-full bg-background/40 flex items-center justify-center">
                       {feature.icon}
                     </div>
                     <h3 className="text-xl font-semibold mb-2">
@@ -70,10 +71,10 @@ export default function Home() {
             <h2 className="text-3xl md:text-4xl font-bold text-center mb-12">
               How It Works
             </h2>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 justify-items-center">
               {steps.map((step, index) => (
-                <div key={index} className="text-center">
-                  <div className="w-16 h-16 rounded-full bg-primary/10 flex items-center justify-center mx-auto mb-4">
+                <div key={index} className="text-center w-[20vw] mx-auto flex flex-col items-center justify-center">
+                  <div className="w-16 h-16 rounded-full bg-primary/10 flex items-center justify-center mb-4">
                     <span className="text-2xl font-bold">{index + 1}</span>
                   </div>
                   <h3 className="text-xl font-semibold mb-2">{step.title}</h3>
