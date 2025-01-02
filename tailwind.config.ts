@@ -10,8 +10,8 @@ export default {
   theme: {
     extend: {
       colors: {
-        background: "hsl(var(--background))",
-        foreground: "hsl(var(--foreground))",
+        background: "#6c00a2",
+        foreground: "#ededed",
 		
         card: {
           DEFAULT: "hsl(var(--card))",
@@ -98,11 +98,6 @@ export default {
             transform: "translateY(-50%)",
           },
         },
-      },
-      fontFamily: {
-        chillax: ['var(--font-chillax)'],
-        sans: ['var(--font-geist-sans)'],
-        mono: ['var(--font-geist-mono)'],
       },
     },
   },
