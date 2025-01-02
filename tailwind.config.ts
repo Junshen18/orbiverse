@@ -99,6 +99,11 @@ export default {
           },
         },
       },
+      fontFamily: {
+        chillax: ['var(--font-chillax)'],
+        sans: ['var(--font-geist-sans)'],
+        mono: ['var(--font-geist-mono)'],
+      },
     },
   },
   plugins: [require("tailwindcss-animate")],
