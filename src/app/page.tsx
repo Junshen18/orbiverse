@@ -1,101 +1,144 @@
+"use client";
+
 import Image from "next/image";
+import { BackgroundGradientAnimation } from "@/components/ui/background-gradient-animation";
+import { SplineViewer } from "@/components/ui/spline-viewer";
+import { ArrowRightIcon } from "@/components/ui/arrow-right";
+import { Header } from "@/components/ui/header";
 
 export default function Home() {
   return (
-    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
-      <main className="flex flex-col gap-8 row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="list-inside list-decimal text-sm text-center sm:text-left font-[family-name:var(--font-geist-mono)]">
-          <li className="mb-2">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] px-1 py-0.5 rounded font-semibold">
-              src/app/page.tsx
-            </code>
-            .
-          </li>
-          <li>Save and see your changes instantly.</li>
-        </ol>
-
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:min-w-44"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
+    <main className="min-h-screen">
+      <Header />
+      
+      {/* Hero Section */}
+      <BackgroundGradientAnimation>
+        <div className="absolute z-50 inset-0 flex flex-col items-center justify-center text-white font-bold px-4 pointer-events-none text-3xl text-center md:text-4xl lg:text-7xl">
+          <p className="bg-clip-text text-transparent drop-shadow-2xl bg-gradient-to-b from-white/80 to-white/20">
+            OrbiVerse
+          </p>
+          <p className="text-white/60 font-normal text-base md:text-lg lg:text-xl mt-4">
+            Your Life, Your Orbs, Your Universe.
+          </p>
+          {/* CTA Button - remove pointer-events-none from parent to make this clickable */}
+          <button className="pointer-events-auto mt-8 px-6 py-3 bg-white/10 hover:bg-white/20 border border-white/20 rounded-full text-base font-normal flex items-center justify-center">
+            Get Started
+          </button>
         </div>
-      </main>
-      <footer className="row-start-3 flex gap-6 flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
-    </div>
+      </BackgroundGradientAnimation>
+
+      {/* Features Section */}
+      <section id="features" className="py-20 px-4 bg-background relative overflow-visible">
+        <div className="max-w-full mx-10 h-[50vh]">
+          <h2 className="text-3xl md:text-4xl font-bold text-center mb-12">
+            Why Choose Orbiverse?
+          </h2>
+          <div className="relative flex flex-row justify-center">
+            {/* Add Spline viewer as a background */}
+            <div className="w-full h-[500px] z-[1] absolute">
+              <SplineViewer
+                url="https://prod.spline.design/bsKVBJe8ZeafTv8B/scene.splinecode"
+                className="w-full h-full"
+              />
+            </div>
+            {/* Features grid with backdrop blur for better readability */}
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-x-96 gap-y-10 relative z-0">
+              {features.map((feature, index) => (
+                <div
+                  key={index}
+                  className="p-6 rounded-lg bg-white/5 backdrop-blur-md border max-w-80 border-white/10 hover:border-white/20 transition-all"
+                >
+                  <div className="w-12 h-12 mb-4 rounded-full bg-primary/10 flex items-center justify-center">
+                    {feature.icon}
+                  </div>
+                  <h3 className="text-xl font-semibold mb-2">
+                    {feature.title}
+                  </h3>
+                  <p className="text-gray-400">{feature.description}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* How It Works Section */}
+      <section id="how-it-works" className="py-20 px-4 bg-background/50">
+        <div className="max-w-6xl mx-auto">
+          <h2 className="text-3xl md:text-4xl font-bold text-center mb-12">
+            How It Works
+          </h2>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            {steps.map((step, index) => (
+              <div key={index} className="text-center">
+                <div className="w-16 h-16 rounded-full bg-primary/10 flex items-center justify-center mx-auto mb-4">
+                  <span className="text-2xl font-bold">{index + 1}</span>
+                </div>
+                <h3 className="text-xl font-semibold mb-2">{step.title}</h3>
+                <p className="text-gray-400">{step.description}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* CTA Section */}
+      <section className="py-20 px-4 bg-background">
+        <div className="max-w-3xl mx-auto text-center">
+          <h2 className="text-3xl md:text-4xl font-bold mb-6">
+            Ready to Start Your Journey?
+          </h2>
+          <p className="text-gray-400 mb-8">
+            Join thousands of users preserving their memories in the Orbiverse.
+          </p>
+          <button className="px-8 py-4 bg-primary rounded-full text-lg font-semibold hover:bg-primary/80 transition-colors">
+            Create Your First Orb
+          </button>
+        </div>
+      </section>
+    </main>
   );
 }
+
+const features = [
+  {
+    title: "Timeless Memories",
+    description: "Capture your moments and secure them for the future.",
+    icon: "🌟",
+  },
+  {
+    title: "Emotional Design",
+    description:
+      "Experience a visual journey where every memory orb reflects your emotions.",
+    icon: "💫",
+  },
+  {
+    title: "True Ownership",
+    description:
+      "Each orb is an NFT, granting you complete control and authenticity.",
+    icon: "🔐",
+  },
+  {
+    title: "Community & Sharing",
+    description:
+      "Collaborate and share memories with loved ones or keep them private.",
+    icon: "🤝",
+  },
+];
+
+const steps = [
+  {
+    title: "Create Your Orb",
+    description:
+      "Add text, images, or files, and customize the orb's emotion and theme.",
+  },
+  {
+    title: "Set the Unlock Criteria",
+    description: "Choose a future date, a location, or a specific event.",
+  },
+  {
+    title: "Store and Share",
+    description:
+      "Securely save your orb on the blockchain and optionally share it with others.",
+  },
+];
