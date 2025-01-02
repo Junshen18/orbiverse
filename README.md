@@ -85,9 +85,6 @@
 - `/contracts`: Smart contract files for Solana programs.
 - `/public`: Static assets for the project.
 
-## Roadmap
-
--
 
 ## Contribution
 
@@ -116,8 +113,8 @@ This project is licensed under the MIT License. See the LICENSE file for details
 
 For questions or feedback, reach out at:
 
-- **Email**: [[junshenhere@gmail.com](mailto\:junshenhere@gmail.com)]
-- **GitHub**: https\://github.com/Junshen18
+- **Email**: [junshenhere@gmail.com](mailto:junshenhere@gmail.com)
+- **GitHub**: [https://github.com/Junshen18](https://github.com/Junshen18)
 - **Twitter**: [@](https://twitter.com/yourhandle)\_Junshen18
 
 ---
