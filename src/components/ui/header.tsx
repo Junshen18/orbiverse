@@ -1,5 +1,6 @@
 'use client';
 
+import { WalletMultiButton } from '@solana/wallet-adapter-react-ui';
 import { useEffect, useState } from 'react';
 
 export function Header() {
@@ -38,14 +39,37 @@ export function Header() {
           <a href="#explore" className="text-sm hover:text-white/80">
             Explore
           </a>
-          <a href="#testimonials" className="text-sm hover:text-white/80">
+          <a href="#blockchain" className="text-sm hover:text-white/80">
+            Why Solana?
+          </a>
+          <a href="#testimonials" className="py-1 text-sm hover:text-white/80">
             Testimonials
           </a>
-          <button className="px-4 py-2 bg-white/10 hover:bg-white/20 border border-white/20 rounded-full text-sm">
-            Get Started
-          </button>
+          {/* <button className="px-4 py-2 bg-white/10 hover:bg-white/20 border border-white/20 rounded-full text-sm">
+            Connect Wallet
+          </button> */}
+          <div className="flex items-center gap-2">
+            <WalletMultiButton style={{
+              padding: '0.25rem 1rem',
+              backgroundColor: 'rgba(255, 255, 255, 0.1)',
+              borderRadius: '4rem',
+              border: '1px solid rgba(255, 255, 255, 0.2)',
+              fontSize: '0.875rem',
+              fontWeight: '500',
+              cursor: 'pointer',
+              transition: 'background-color 0.3s ease-in-out',
+              fontFamily: 'var(--font-chillax)',
+            }} className="hover:bg-white/20" />
+            {/* <WalletMultiButton
+                className="connect-wallet-button"
+            /> */}
+          </div>
         </nav>
       </div>
     </header>
   );
 } 
+
+
+
+// className="px-4 py-2 bg-white/10 hover:bg-white/20 border border-white/20 rounded-full text-sm"

@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import { chillax } from "@/lib/fonts";
 import "./globals.css";
+import AppWalletProvider from "@/components/appwalletprovider";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -28,7 +29,9 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} ${chillax.variable} font-chillax bg-black antialiased text-white`}
       >
-        {children}
+        <AppWalletProvider>
+          {children}
+        </AppWalletProvider>
       </body>
     </html>
   );

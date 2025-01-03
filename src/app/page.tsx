@@ -6,6 +6,8 @@ import { SplineViewer } from "@/components/ui/spline-viewer";
 import { ArrowRightIcon } from "@/components/ui/arrow-right";
 import { Header } from "@/components/ui/header";
 import { Footer } from "@/components/ui/footer";
+import { WalletMultiButton } from "@solana/wallet-adapter-react-ui";
+import { HoverBorderGradient } from "@/components/ui/hover-border-gradient";
 
 export default function Home() {
   return (
@@ -23,10 +25,12 @@ export default function Home() {
               Your Life, Your Orbs, Your Universe.
             </p>
             <p className="w-[50vw] text-white font-normal text-base md:text-lg lg:text-xl mt-4">Orbiverse is a decentralized time capsule dApp that allows you to store, secure, and relive your cherished memories as vibrant orbs powered by blockchain technology.</p>
-            {/* CTA Button - remove pointer-events-none from parent to make this clickable */}
             <button className="pointer-events-auto mt-8 px-6 py-3 bg-white/10 hover:bg-white/20 border border-white/20 rounded-full text-base font-normal flex items-center justify-center">
               Get Started
             </button>
+
+
+
           </div>
         </BackgroundGradientAnimation>
 
@@ -37,14 +41,14 @@ export default function Home() {
               Why Choose Orbiverse?
             </h2>
             <div className="relative flex flex-row justify-center">
-              {/* Add Spline viewer as a background */}
-              <div className="w-full h-[500px] absolute">
+              {/* Spline viewer with higher z-index */}
+              <div className="w-full h-[500px] absolute z-10 pointer-events-none">
                 <SplineViewer
                   url="https://prod.spline.design/bsKVBJe8ZeafTv8B/scene.splinecode"
-                  className="w-full h-full"
+                  className="w-full h-full pointer-events-auto"
                 />
               </div>
-              {/* Features grid with backdrop blur for better readability */}
+              {/* Features grid */}
               <div className="grid grid-cols-1 md:grid-cols-2 gap-x-96 gap-y-10 relative z-0">
                 {features.map((feature, index) => (
                   <div
@@ -66,7 +70,7 @@ export default function Home() {
         </section>
 
         {/* How It Works Section */}
-        <section id="how-it-works" className="py-20 px-4 bg-background">
+        <section id="how-it-works" className="py-20 px-4 bg-background border-b-2 border-white/20">
           <div className="max-w-6xl mx-auto">
             <h2 className="text-3xl md:text-4xl font-bold text-center mb-12">
               How It Works
@@ -103,22 +107,25 @@ export default function Home() {
         </section>
 
         {/* Blockchain Section */}
-        <section id="blockchain" className="py-20 px-4 bg-background/40">
-          <div className="max-w-6xl mx-auto">
-            <h2 className="text-3xl md:text-4xl font-bold text-center mb-12">
-              Why Blockchain?
+        <section id="blockchain" className="py-20 px-4 bg-background/40 ">
+          <div className="max-w-6xl mx-auto z-10 relative">
+            <h2 className="text-3xl md:text-4xl font-bold text-center mb-12 z-10">
+              Why Blockchain on Solana?
             </h2>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <div className="flex flex-wrap flex-row gap-8 justify-center">
               {blockchainFeatures.map((feature, index) => (
-                <div key={index} className="text-center">
-                  <div className="w-16 h-16 rounded-full bg-primary/10 flex items-center justify-center mx-auto mb-4">
-                    {feature.icon}
+                <div key={index} className="text-center w-[20vw] flex flex-col items-center justify-center relative">
+                  <div className="relative">
+                    <Image src={feature.img} alt={feature.title} width={80} height={80} className="mb-4 z-10" />
+                    <div className="z-[-1] absolute translate-x-[-50%] translate-y-[-55%] top-[50%] left-[50%] w-[120px] h-[120px] bg-white/10 rounded-full backdrop-blur-md"></div>
+                    <div className="z-[-2] absolute translate-x-[-50%] translate-y-[-55%] top-[50%] left-[50%] w-[80px] h-[80px] bg-sky-500/50 rounded-full"></div>
                   </div>
                   <h3 className="text-xl font-semibold mb-2">{feature.title}</h3>
                   <p className="text-gray-400">{feature.description}</p>
                 </div>
               ))}
             </div>
+          <Image src="/solana-icon.png" alt="Solana Logo" width={60} height={60} className="opacity-80 z-[-1] -rotate-12 absolute top-[-3%] right-[25%] bg-white rounded-full" />
           </div>
         </section>
 
@@ -211,17 +218,27 @@ const blockchainFeatures = [
   {
     title: "Immutability",
     description: "Your memories are forever preserved.",
-    icon: "🔒",
+    img: "/immutability.png",
   },
   {
     title: "Transparency",
     description: "Every interaction is verifiable and secure.",
-    icon: "✨",
+    img: "/secure.png",
   },
   {
     title: "Low Costs",
     description: "Affordable transactions, making it accessible to everyone.",
-    icon: "💎",
+    img: "/lowcosts.png",
+  },
+  {
+    title: "Speed and Scalability",
+    description: "Lightning-fast and scalable performance.",
+    img: "/speed.png",
+  },
+  {
+    title: "Eco-Friendly",
+    description: "Energy-efficient proof-of-stake system.",
+    img: "/eco.png",
   },
 ];
 
