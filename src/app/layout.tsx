@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import { chillax } from "@/lib/fonts";
 import "./globals.css";
-import AppWalletProvider from "@/components/appwalletprovider";
+import AppWalletProvider from "@/components/AppWalletProvider";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
