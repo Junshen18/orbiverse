@@ -10,17 +10,17 @@ type FilterBarProps = {
 
 export function FilterBar({ filter, setFilter }: FilterBarProps) {
   return (
-    <div className="flex flex-wrap gap-4 mb-8 p-4 bg-white/5 backdrop-blur-lg rounded-lg">
+    <div className="flex flex-wrap md:gap-4 gap-1 mb-8 p-4 bg-white/5 backdrop-blur-lg rounded-lg">
       <input
         type="text"
         placeholder="Search orbs..."
-        className="flex-1 min-w-[200px] px-4 py-2 bg-white/10 rounded-full border border-white/20 focus:outline-none focus:border-white/40"
+        className="flex-1 min-w-[250px] md:px-4 px-2 md:py-2 py-1 bg-white/10 rounded-full border border-white/20 focus:outline-none focus:border-white/40"
         value={filter.search}
         onChange={(e) => setFilter({ ...filter, search: e.target.value })}
       />
       
       <select
-        className="px-4 py-2 bg-white/10 rounded-full border border-white/20"
+        className="text-xs md:text-base md:px-4 px-2 md:py-2 py-1 bg-white/10 rounded-full border border-white/20"
         value={filter.emotion}
         onChange={(e) => setFilter({ ...filter, emotion: e.target.value })}
       >
@@ -31,7 +31,7 @@ export function FilterBar({ filter, setFilter }: FilterBarProps) {
       </select>
 
       <select
-        className="px-4 py-2 bg-white/10 rounded-full border border-white/20"
+        className="text-xs md:text-base md:px-4 px-2 md:py-2 py-1 bg-white/10 rounded-full border border-white/20"
         value={filter.status}
         onChange={(e) => setFilter({ ...filter, status: e.target.value })}
       >
@@ -42,7 +42,7 @@ export function FilterBar({ filter, setFilter }: FilterBarProps) {
       </select>
 
       <select
-        className="px-4 py-2 bg-white/10 rounded-full border border-white/20"
+        className="hidden md:block text-xs md:text-base md:px-4 px-2 md:py-2 py-1 bg-white/10 rounded-full border border-white/20"
         value={filter.sortBy}
         onChange={(e) => setFilter({ ...filter, sortBy: e.target.value })}
       >
