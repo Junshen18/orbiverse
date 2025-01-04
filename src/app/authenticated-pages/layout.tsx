@@ -21,7 +21,7 @@ export default function AuthenticatedLayout({
         router.push('/');
       }
       setIsChecking(false);
-    }, 1500);
+    }, 1700);
 
     return () => clearTimeout(timer);
   }, [connected, publicKey, router]);

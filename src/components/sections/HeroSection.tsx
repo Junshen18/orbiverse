@@ -11,11 +11,11 @@ export function HeroSection() {
   const router = useRouter();
 
   const handleStart = () => {
-    showLoading();
+    // showLoading();
     // Simulate navigation delay
-    setTimeout(() => {
+    // setTimeout(() => {
       router.push('/authenticated-pages/dashboard'); // Replace with your actual route
-    }, 2000);
+    // }, 2000);
   };
 
   return (
