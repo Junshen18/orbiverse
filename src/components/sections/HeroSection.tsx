@@ -19,15 +19,15 @@ export function HeroSection() {
   };
 
   return (
-    <BackgroundGradientAnimation>
+    <BackgroundGradientAnimation className="border-b border-background">
       <div className="absolute z-10 inset-0 flex flex-col items-center justify-center text-white font-bold px-4 pointer-events-none text-center gap-4">
-        <p className="bg-clip-text text-transparent drop-shadow-2xl bg-gradient-to-b from-white to-white/20 text-3xl md:text-4xl lg:text-3xl mb-10">
+        <p className="bg-clip-text text-transparent drop-shadow-2xl bg-gradient-to-b from-white to-white/20 text-4xl lg:text-3xl md:mb-10">
           OrbiVerse
         </p>
         <p className="text-white/80 font-bold text-base md:text-lg lg:text-7xl w-[50vw]">
           Your Life, Your Orbs, Your Universe.
         </p>
-        <p className="w-[50vw] text-white font-normal text-base md:text-lg lg:text-xl">
+        <p className="hidden md:block w-[50vw] text-white font-normal text-base md:text-lg lg:text-xl">
           Orbiverse is a decentralized time capsule dApp that allows you to
           store, secure, and relive your cherished memories as vibrant orbs
           powered by blockchain technology.
@@ -58,6 +58,7 @@ export function HeroSection() {
             Create a Memory Orb
           </div>
         )}
+        <div className="absolute bottom-0 left-0 w-full h-20 bg-gradient-to-b from-transparent to-background"></div>
       </div>
     </BackgroundGradientAnimation>
   );

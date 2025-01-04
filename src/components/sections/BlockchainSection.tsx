@@ -30,7 +30,7 @@ const blockchainFeatures = [
 
 export function BlockchainSection() {
   return (
-    <section id="blockchain" className="py-20 px-4 bg-background/40">
+    <section id="blockchain" className="py-20 px-4 bg-background/40 ">
       <div className="max-w-6xl mx-auto z-10 relative">
         <h2 className="text-3xl md:text-4xl font-bold text-center mb-12 z-10">
           Why Blockchain on Solana?

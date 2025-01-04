@@ -39,7 +39,7 @@ export function HowItWorksSection() {
   return (
     <section
       id="how-it-works"
-      className="py-20 px-4 bg-background border-b-2 border-white/20"
+      className="py-20 px-4 bg-darkpurple border-b-2 border-white/20"
     >
       <div className="max-w-7xl mx-auto">
         <h2 className="text-3xl md:text-4xl font-bold text-center mb-12">
@@ -77,7 +77,7 @@ export function HowItWorksSection() {
 
                   <div>
                     <div className="flex items-center mb-4">
-                      <h4 style={{fontWeight: expandedStep === step.number ? "bold" : "semibold", fontSize: expandedStep === step.number ? "2rem" : "1.5rem"}}>{step.title}</h4>
+                      <h4 className="font-semibold" style={{fontWeight: expandedStep === step.number ? "bold" : "semibold", fontSize: expandedStep === step.number ? "2rem" : "1.5rem"}}>{step.title}</h4>
                     </div>
                     <div
                       className="overflow-hidden transition-[max-height] duration-300 ease-in-out"

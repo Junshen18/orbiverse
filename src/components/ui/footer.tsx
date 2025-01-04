@@ -1,6 +1,6 @@
 export function Footer() {
   return (
-    <footer className="bg-background/95 backdrop-blur-md border-t border-white/10">
+    <footer className="bg-darkpurple backdrop-blur-md border-t border-white/10">
       {/* Get Started Section */}
       <section id="get-started" className="py-20 px-4">
         <div className="max-w-6xl mx-auto">

@@ -25,7 +25,7 @@ const features = [
 
 export function FeaturesSection() {
   return (
-    <section id="features" className="py-20 px-4 bg-background/40 relative overflow-visible">
+    <section id="features" className="py-20 px-4 bg-background relative overflow-visible">
       <div className="max-w-full mx-10 h-[60vh]">
         <h2 className="text-3xl md:text-4xl font-bold text-center mb-12">
           Why Choose Orbiverse?
@@ -43,7 +43,7 @@ export function FeaturesSection() {
                 key={index}
                 className="hover:translate-y-[-5px] brightness-125 p-6 rounded-lg bg-white/5 backdrop-blur-md border max-w-80 border-white/10 hover:border-white/20 transition-all"
               >
-                <div className="w-12 h-12 mb-4 rounded-full bg-background/40 flex items-center justify-center">
+                <div className="text-2xl w-12 h-12 mb-4 rounded-full bg-background/40 flex items-center justify-center">
                   {feature.icon}
                 </div>
                 <h3 className="text-xl font-semibold mb-2">{feature.title}</h3>

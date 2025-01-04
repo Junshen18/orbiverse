@@ -76,7 +76,7 @@ export function TestimonialsSection() {
           ))}
         </div> */}
 
-      <div className="relative flex h-[500px] w-full flex-col items-center justify-center overflow-hidden rounded-lg bg-background/40 md:shadow-xl">
+      <div className="relative flex h-[500px] w-full flex-col items-center justify-center overflow-hidden rounded-lg bg-darkpurple md:shadow-xl">
         <Marquee pauseOnHover className="[--duration:20s]">
           {firstRow.map((review) => (
             <ReviewCard
