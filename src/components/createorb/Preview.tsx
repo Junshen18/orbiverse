@@ -33,7 +33,7 @@ export function Preview({ orbData }: PreviewProps) {
             background: `radial-gradient(circle at 30% 30%, ${
               orbData.customization.theme ? themes[orbData.customization.theme] : '#4ECDC4'
             }, transparent)`,
-            boxShadow: '0 0 40px rgba(255, 255, 255, 0.1)',
+            boxShadow: '0 0 50px rgba(255, 255, 255, 0.3)',
           }}
         />
         {orbData.customization.emotion && (

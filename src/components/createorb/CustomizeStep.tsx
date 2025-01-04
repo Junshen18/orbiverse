@@ -17,7 +17,7 @@ const themeOptions: { id: ThemeId; color: string }[] = [
   { id: 'cool', color: '#4ECDC4' },
   { id: 'nature', color: '#95E1D3' },
   { id: 'sunset', color: '#FFB174' },
-  { id: 'ocean', color: '#6C5B7B' },
+  { id: 'ocean', color: '#0066cc' },
 ];
 
 type CustomizeStepProps = {
