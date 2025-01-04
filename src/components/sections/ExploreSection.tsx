@@ -17,9 +17,9 @@ const exploreSections = [
 
 export function ExploreSection() {
   return (
-    <section id="explore" className="py-20 px-4 bg-background">
+    <section id="explore" className="py-12 md:py-20 px-4 bg-background">
       <div className="max-w-6xl mx-auto relative z-10">
-        <Image src="/explore.png" alt="Explore the Orbiverse" width={60} height={60} className="opacity-80 absolute top-[-3%] left-[31%] z-[-1] object-cover" />
+        <Image src="/explore.png" alt="Explore the Orbiverse" width={60} height={60} className="opacity-80 absolute top-[-3%] md:top-[-3%] left-[50%] translate-x-[-50%] md:translate-x-[0%] md:left-[31%] z-[-1] object-cover" />
         <h2 className="text-3xl md:text-4xl font-bold text-center mb-12">
           Explore the Orbiverse
         </h2>

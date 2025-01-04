@@ -30,7 +30,7 @@ export function Header() {
       }`}
     >
       <div className="max-w-7xl mx-auto px-4 h-16 flex items-center justify-between">
-        <div className="font-chillax font-semibold text-xl">OrbiVerse</div>
+        <div href="" className="font-chillax font-semibold text-xl">OrbiVerse</div>
         <nav className="hidden md:flex items-center gap-6">
           <a href="#features" className="text-sm hover:text-white/80">
             Features
@@ -52,24 +52,12 @@ export function Header() {
             {publicKey ? `${publicKey.toBase58().slice(0, 4)}...${publicKey.toBase58().slice(-4)}` : 'Connect Wallet'}
             </WalletMultiButton>
           </div>
-
-          {/* <div className="flex items-center gap-2">
-            <WalletMultiButton style={{
-              padding: '0.25rem 1rem',
-              backgroundColor: 'rgba(255, 255, 255, 0.1)',
-              borderRadius: '4rem',
-              border: '1px solid rgba(255, 255, 255, 0.2)',
-              fontSize: '0.875rem',
-              fontWeight: '500',
-              cursor: 'pointer',
-              transition: 'background-color 0.3s ease-in-out',
-              fontFamily: 'var(--font-chillax)',
-            }} className="hover:bg-white/20" /> */}
-            {/* <WalletMultiButton
-                className="connect-wallet-button"
-            /> */}
-          {/* </div> */}
         </nav>
+        <div className="md:hidden font-chillax font-medium px-4 py-0 bg-white/10 hover:bg-white/20 border border-white/20 rounded-full text-sm">
+            <WalletMultiButton style={{backgroundColor: 'transparent', borderRadius: '0', border: '0', margin: '0', padding: '0', fontSize: '0.875rem', fontFamily: 'var(--font-chillax)', height: '2.5rem'}}>
+            {publicKey ? `${publicKey.toBase58().slice(0, 4)}...${publicKey.toBase58().slice(-4)}` : 'Connect Wallet'}
+            </WalletMultiButton>
+          </div>
       </div>
     </header>
   );

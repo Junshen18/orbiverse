@@ -45,11 +45,11 @@ export function HowItWorksSection() {
         <h2 className="text-3xl md:text-4xl font-bold text-center mb-12">
           How It Works
         </h2>
-        <div className="flex flex-nowrap overflow-x-visible gap-6 pb-4">
+        <div className="hidden md:flex md:flex-nowrap overflow-x-visible gap-6 pb-4">
           {steps.map((step) => (
             <div
               key={step.number}
-              className={`flex-shrink-0 rounded-lg border border-white/10 relative overflow-hidden text-white transition-all duration-300 ease-in-out hover:border-white/20 h-[80vh] ${
+              className={`flex-shrink-0 rounded-lg border border-white/10 relative overflow-hidden text-white transition-all duration-300 ease-in-out hover:border-white/20 h-[20vh] md:h-[80vh] ${
                 expandedStep === step.number ? "w-[40%]" : "w-[20%]"
               }`}
               onMouseEnter={() => setExpandedStep(step.number)}
@@ -59,28 +59,67 @@ export function HowItWorksSection() {
               <div className="absolute inset-0 bg-transparent backdrop-blur-lg">
                 <img src={step.img} alt={step.title} className="w-full h-full object-cover" />
               </div>
-              {/* Animated Bubbles */}
-              {/* <div className="absolute inset-0 overflow-hidden">
-                <div className="bubble-1" />
-                <div className="bubble-2" />
-                <div className="bubble-3" />
-              </div> */}
 
               {/* Content with blur overlay */}
               <div className={`relative z-10 h-full backdrop-blur-md`}>
-                <div className="p-6 flex flex-col justify-between h-full">
+                <div className="p-4 md:p-6 flex flex-col justify-between h-full">
                   <div className="flex justify-end mb-4">
-                    <div className={`rounded-full flex items-center justify-center font-bold mr-4 backdrop-blur-md text-8xl`}>
+                    <div className={`rounded-full flex items-center justify-center font-bold mr-4 backdrop-blur-md text-4xl md:text-8xl`}>
                       {step.number}
                     </div>
                   </div>
 
                   <div>
                     <div className="flex items-center mb-4">
-                      <h4 className="font-semibold" style={{fontWeight: expandedStep === step.number ? "bold" : "semibold", fontSize: expandedStep === step.number ? "2rem" : "1.5rem"}}>{step.title}</h4>
+                      <h4 className="hidden md:block font-semibold" style={{fontWeight: expandedStep === step.number ? "bold" : "semibold", fontSize: expandedStep === step.number ? "2rem" : "1.5rem"}}>{step.title}</h4>
+                      <h4 className="block md:hidden font-bold text-base" >{step.title}</h4>
                     </div>
                     <div
-                      className="overflow-hidden transition-[max-height] duration-300 ease-in-out"
+                      className="hidden md:block overflow-hidden transition-[max-height] duration-300 ease-in-out"
+                      style={{
+                        maxHeight:
+                          expandedStep === step.number ? "200px" : "0px",
+                      }}
+                    >
+                      <p className="font-chillax">{step.content}</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+
+          {/* mobile */}
+        <div className="grid grid-cols-2 overflow-x-visible gap-6 pb-4 md:hidden">
+          {steps.map((step) => (
+            <div
+              key={step.number}
+              className={`flex-shrink-0 rounded-lg border border-white/10 relative overflow-hidden text-white transition-all duration-300 ease-in-out hover:border-white/20 h-[20vh]`}
+              onMouseEnter={() => setExpandedStep(step.number)}
+            >
+              {/* Gradient Background */}
+              {/* <div className={`absolute inset-0 bg-gradient-to-br ${step.gradient}`} /> */}
+              <div className="absolute inset-0 bg-transparent backdrop-blur-lg">
+                <img src={step.img} alt={step.title} className="w-full h-full object-cover" />
+              </div>
+
+              {/* Content with blur overlay */}
+              <div className={`relative z-10 h-full backdrop-blur-md`}>
+                <div className="p-4 md:p-6 flex flex-col justify-between h-full">
+                  <div className="flex justify-end mb-4">
+                    <div className={`rounded-full flex items-center justify-center font-bold mr-4 backdrop-blur-md text-4xl md:text-8xl`}>
+                      {step.number}
+                    </div>
+                  </div>
+
+                  <div>
+                    <div className="flex items-center mb-4">
+                      <h4 className="hidden md:block font-semibold" style={{fontWeight: expandedStep === step.number ? "bold" : "semibold", fontSize: expandedStep === step.number ? "2rem" : "1.5rem"}}>{step.title}</h4>
+                      <h4 className="block md:hidden font-bold text-base" >{step.title}</h4>
+                    </div>
+                    <div
+                      className="hidden md:block overflow-hidden transition-[max-height] duration-300 ease-in-out"
                       style={{
                         maxHeight:
                           expandedStep === step.number ? "200px" : "0px",
