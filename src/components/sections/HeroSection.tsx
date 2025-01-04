@@ -15,7 +15,7 @@ export function HeroSection() {
     // Simulate navigation delay
     setTimeout(() => {
       router.push('/authenticated-pages/dashboard'); // Replace with your actual route
-    }, 500);
+    }, 2000);
   };
 
   return (
