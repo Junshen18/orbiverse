@@ -2,9 +2,21 @@
 import { WalletMultiButton } from "@solana/wallet-adapter-react-ui";
 import { useWallet } from "@solana/wallet-adapter-react";
 import { BackgroundGradientAnimation } from "@/components/ui/background-gradient-animation";
+import { useNavigation } from "@/context/NavigationContext";
+import { useRouter } from "next/navigation";
 
 export function HeroSection() {
   const { publicKey } = useWallet();
+  const { showLoading } = useNavigation();
+  const router = useRouter();
+
+  const handleStart = () => {
+    showLoading();
+    // Simulate navigation delay
+    setTimeout(() => {
+      router.push('/authenticated-pages/dashboard'); // Replace with your actual route
+    }, 500);
+  };
 
   return (
     <BackgroundGradientAnimation>
@@ -38,11 +50,14 @@ export function HeroSection() {
             </WalletMultiButton>
           </div>
         )}
-        {publicKey && <div onClick={() => {
-          console.log("clicked");
-        }} className="pointer-events-auto cursor-pointer font-chillax font-medium px-4 py-2 z-[100] bg-white/10 hover:bg-white/20 border border-white/20 rounded-full text-sm">
-          Create an Memory Orb
-        </div>}
+        {publicKey && (
+          <div 
+            onClick={handleStart}
+            className="pointer-events-auto cursor-pointer font-chillax font-medium px-4 py-2 z-[100] bg-white/10 hover:bg-white/20 border border-white/20 rounded-full text-sm"
+          >
+            Create a Memory Orb
+          </div>
+        )}
       </div>
     </BackgroundGradientAnimation>
   );

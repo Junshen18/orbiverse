@@ -9,19 +9,20 @@ import { ExploreSection } from "@/components/sections/ExploreSection";
 import { BlockchainSection } from "@/components/sections/BlockchainSection";
 import { TestimonialsSection } from "@/components/sections/TestimonialsSection";
 import { LoadingScreen } from "@/components/ui/loading-screen";
-import { useState, useEffect } from "react";
+import { useNavigation } from "@/context/NavigationContext";
+import { useEffect } from "react";
 
 export default function Home() {
-  const [isLoading, setIsLoading] = useState(true);
+  const { isLoading, hideLoading } = useNavigation();
 
   useEffect(() => {
-    // Hide loading screen after 3 seconds (1s after animation starts)
+    // Hide loading screen after 3 seconds
     const timer = setTimeout(() => {
-      setIsLoading(false);
+      hideLoading();
     }, 3000);
 
     return () => clearTimeout(timer);
-  }, []);
+  }, [hideLoading]);
 
   return (
     <>
