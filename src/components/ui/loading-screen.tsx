@@ -10,8 +10,7 @@ export function LoadingScreen() {
     // Start exit animation after 2 seconds
     const timer = setTimeout(() => {
       setIsExiting(true);
-    }, 2000);
-
+    }, 1700);
     return () => clearTimeout(timer);
   }, []);
 
