@@ -30,7 +30,7 @@ export function Header() {
       }`}
     >
       <div className="max-w-7xl mx-auto px-4 h-16 flex items-center justify-between">
-        <div href="" className="font-chillax font-semibold text-xl">OrbiVerse</div>
+        <div className="font-chillax font-semibold text-xl">OrbiVerse</div>
         <nav className="hidden md:flex items-center gap-6">
           <a href="#features" className="text-sm hover:text-white/80">
             Features
