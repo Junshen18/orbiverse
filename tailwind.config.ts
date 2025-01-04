@@ -12,6 +12,7 @@ export default {
   		colors: {
   			background: '#6c00a2',
   			foreground: '#ededed',
+        darkpurple: '#4d0073',
   			yellow: '#eff250',
   			green: '#4adb48',
   			red: '#c83232',

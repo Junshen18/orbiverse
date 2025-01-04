@@ -3,9 +3,10 @@
 import { useState } from "react";
 import { LoadingScreen } from "@/components/ui/loading-screen";
 import { useNavigation } from "@/context/NavigationContext";
+
 import { DashboardHeader } from "@/components/dashboard/DashboardHeader";
-import { OrbGallery } from "@/components/dashboard/OrbGallery";
 import { FilterBar } from "@/components/dashboard/FilterBar";
+import { OrbGallery } from "@/components/dashboard/OrbGallery";
 
 export default function Dashboard() {
   const [filter, setFilter] = useState({

@@ -1,7 +1,9 @@
 import { useWallet } from "@solana/wallet-adapter-react";
 import { WalletMultiButton } from "@solana/wallet-adapter-react-ui";
+import { useRouter } from "next/navigation";
 
 export function DashboardHeader() {
+const router = useRouter();
   const { publicKey } = useWallet();
   return (
     <div className="flex justify-between items-center mb-8">
@@ -14,7 +16,7 @@ export function DashboardHeader() {
 
       </div>
       <div className="flex items-center gap-2">
-        <button className="px-4 py-2 bg-white/10 hover:bg-white/20 border border-white/20 rounded-full">
+        <button className="px-4 py-2 bg-white/10 hover:bg-white/20 border border-white/20 rounded-full" onClick={() => router.push('/authenticated-pages/createorb')}>
           Create New Orb
         </button>
         <div className="font-chillax font-medium px-4 py-0 bg-white/10 hover:bg-white/20 border border-white/20 rounded-full text-sm">
