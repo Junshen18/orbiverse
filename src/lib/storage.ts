@@ -6,7 +6,7 @@ export type Orb = {
   name: string;
   emotion: string;
   status: string;
-  unlockDate: string;
+  unlockCriteria: string;
   preview: string;
   description: string;
 };
@@ -22,7 +22,7 @@ const dummyOrbs: Orb[] = [
     name: "Birthday 2024",
     emotion: "happy",
     status: "locked",
-    unlockDate: "2025-01-01",
+    unlockCriteria: "data",
     preview: "/gradient-1.png",
     description: "This is a description of the memory",
   },
@@ -31,7 +31,7 @@ const dummyOrbs: Orb[] = [
     name: "2024 Recap",
     emotion: "happy",
     status: "locked",
-    unlockDate: "",
+    unlockCriteria: "manual",
     preview: "/sea.jpg",
     description: "This is a description of the memory",
   },
@@ -40,7 +40,7 @@ const dummyOrbs: Orb[] = [
     name: "2023 Recap",
     emotion: "love",
     status: "locked",
-    unlockDate: "",
+    unlockCriteria: "location",
     preview: "/sunset.png",
     description: "This is a description of the memory",
   },
@@ -49,7 +49,7 @@ const dummyOrbs: Orb[] = [
     name: "2022 Recap",
     emotion: "love",
     status: "locked",
-    unlockDate: "",
+    unlockCriteria: "location",
     preview: "/field.jpg",
     description: "This is a description of the memory",
   },
@@ -103,10 +103,10 @@ export const getHiddenOrbsData = (): Orb[] => {
     name: orb.content.title,
     emotion: orb.customization.emotion,
     status: "locked",
-    unlockDate: orb.unlockCriteria.date,
+    unlockCriteria: orb.unlockCriteria,
     preview: orb.content.images[0] || "/gradient-1.png",
     description: orb.content.text,
   }))];
   
-  return allOrbs.filter(orb => hiddenOrbIds.includes(orb.id));
+  return allOrbs.filter(orb => hiddenOrbIds.includes(orb.id)) as Orb[];
 }; 

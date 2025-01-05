@@ -7,7 +7,7 @@ type OrbDetailModalProps = {
     name: string;
     emotion: string;
     status: string;
-    unlockDate: string;
+    unlockCriteria: string;
     preview: string;
     description: string;
   };
@@ -60,11 +60,11 @@ export function OrbDetailModal({ orb, onClose, onHide, isHidden }: OrbDetailModa
 
             <p className="text-white/70 mb-6">{orb.description}</p>
 
-            {orb.unlockDate && (
+            {orb.unlockCriteria && (
               <div className="mb-6">
-                <h3 className="text-sm font-medium mb-1">Unlock Date</h3>
+                <h3 className="text-sm font-medium mb-1">Unlock Criteria</h3>
                 <p className="text-white/70">
-                  {new Date(orb.unlockDate).toLocaleDateString()}
+                  {orb.unlockCriteria}
                 </p>
               </div>
             )}
