@@ -4,22 +4,43 @@ import { useWallet } from "@solana/wallet-adapter-react";
 import { BackgroundGradientAnimation } from "@/components/ui/background-gradient-animation";
 import { useNavigation } from "@/context/NavigationContext";
 import { useRouter } from "next/navigation";
+import useSound from 'use-sound';
+import { SoundButton } from "@/components/ui/SoundButton";
+import { useEffect, useState } from "react";
 
 export function HeroSection() {
   const { publicKey } = useWallet();
-  const { showLoading } = useNavigation();
   const router = useRouter();
+  const [isPlaying, setIsPlaying] = useState(false);
+  const [play, { stop }] = useSound('/flowerday.mp3', {
+    volume: 0.5,
+    loop: true,
+  });
+
+  const handleSoundToggle = () => {
+    if (isPlaying) {
+      stop();
+    } else {
+      play();
+    }
+    setIsPlaying(!isPlaying);
+  };
+
+  // Stop sound when component unmounts
+  useEffect(() => {
+    return () => {
+      stop();
+    };
+  }, [stop]);
 
   const handleStart = () => {
-    // showLoading();
-    // Simulate navigation delay
-    // setTimeout(() => {
-      router.push('/authenticated-pages/dashboard'); // Replace with your actual route
-    // }, 2000);
+    router.push('/authenticated-pages/dashboard');
   };
 
   return (
     <BackgroundGradientAnimation className="border-b border-background">
+      <SoundButton onToggle={handleSoundToggle} isPlaying={isPlaying} />
+      
       <div className="absolute z-10 inset-0 flex flex-col items-center justify-center text-white font-bold px-4 pointer-events-none text-center gap-4">
         <p className="bg-clip-text text-transparent drop-shadow-2xl bg-gradient-to-b from-white to-white/20 text-4xl lg:text-3xl md:mb-10">
           OrbiVerse
