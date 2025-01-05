@@ -9,8 +9,11 @@ import { ContentStep } from "@/components/createorb/ContentStep";
 import { CustomizeStep } from "@/components/createorb/CustomizeStep";
 import { UnlockStep } from "@/components/createorb/UnlockStep";
 import { Preview } from "@/components/createorb/Preview";
+import { saveOrb } from "@/lib/storage";
+import { useRouter } from "next/navigation";
 
 export default function CreateOrb() {
+  const router = useRouter();
   const [currentStep, setCurrentStep] = useState(1);
   const [orbData, setOrbData] = useState<OrbData>({
     content: {
@@ -29,6 +32,7 @@ export default function CreateOrb() {
       location: { lat: 0, lng: 0 },
     },
   });
+  const [errors, setErrors] = useState<string[]>([]);
 
   const steps = [
     { number: 1, title: "Memory Content" },
@@ -36,8 +40,26 @@ export default function CreateOrb() {
     { number: 3, title: "Unlock Criteria" },
   ];
 
+  const validateStep = (step: number): boolean => {
+    const newErrors: string[] = [];
+
+    if (step === 1) {
+      if (!orbData.content.title.trim()) {
+        newErrors.push("Title is required");
+      }
+      if (!orbData.content.text.trim()) {
+        newErrors.push("Description is required");
+      }
+    }
+
+    setErrors(newErrors);
+    return newErrors.length === 0;
+  };
+
   const handleNext = () => {
-    if (currentStep < 3) setCurrentStep(currentStep + 1);
+    if (validateStep(currentStep)) {
+      setCurrentStep(currentStep + 1);
+    }
   };
 
   const handleBack = () => {
@@ -45,8 +67,11 @@ export default function CreateOrb() {
   };
 
   const handleCreate = () => {
-    // Handle orb creation
-    console.log("Creating orb:", orbData);
+    if (validateStep(currentStep)) {
+      const savedOrb = saveOrb(orbData);
+      console.log("Orb created:", savedOrb);
+      router.push('/authenticated-pages/dashboard');
+    }
   };
 
   return (
@@ -99,6 +124,14 @@ export default function CreateOrb() {
           <Preview orbData={orbData} />
         </div>
       </div>
+
+      {errors.length > 0 && (
+        <div className="mt-4 p-4 bg-red-500/10 border border-red-500/20 rounded-lg">
+          {errors.map((error, index) => (
+            <p key={index} className="text-red-400 text-sm">{error}</p>
+          ))}
+        </div>
+      )}
     </main>
   );
 }

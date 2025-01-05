@@ -19,12 +19,7 @@ const router = useRouter();
         <h1 className="text-4xl font-bold mb-2">Orbiverse</h1>
       </div>
       <div className="flex items-center gap-2">
-        <div className="hidden md:block cursor-pointer px-4 py-2 bg-white/10 hover:bg-white/20 border border-white/20 rounded-full" onClick={() => router.push('/authenticated-pages/createorb')}>
-          Create New Orb
-        </div>
-        <div className="block md:hidden cursor-pointer px-4 py-2 bg-white/10 hover:bg-white/20 border border-white/20 rounded-full" onClick={() => router.push('/authenticated-pages/createorb')}>
-          +
-        </div>
+
         <div className="font-chillax font-medium px-4 py-0 bg-white/10 hover:bg-white/20 border border-white/20 rounded-full text-sm">
           <WalletMultiButton
             style={{
