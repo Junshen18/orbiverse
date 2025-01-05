@@ -10,6 +10,9 @@ const emotionOptions: { id: EmotionId; label: string; icon: string }[] = [
   { id: 'excited', label: 'Excited', icon: '🎉' },
   { id: 'nostalgic', label: 'Nostalgic', icon: '🌟' },
   { id: 'love', label: 'Love', icon: '❤️' },
+  { id: 'angry', label: 'Angry', icon: '😠' },
+  { id: 'scared', label: 'Scared', icon: '😱' },
+  { id: 'surprised', label: 'Surprised', icon: '😲' },
 ];
 
 const themeOptions: { id: ThemeId; color: string }[] = [

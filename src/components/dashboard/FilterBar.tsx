@@ -26,8 +26,13 @@ export function FilterBar({ filter, setFilter }: FilterBarProps) {
       >
         <option value="all">All Emotions</option>
         <option value="happy">Happy</option>
-        <option value="nostalgic">Nostalgic</option>
+        <option value="sad">Sad</option>
         <option value="excited">Excited</option>
+        <option value="nostalgic">Nostalgic</option>
+        <option value="love">Love</option>
+        <option value="angry">Angry</option>
+        <option value="scared">Scared</option>
+        <option value="surprised">Surprised</option>
       </select>
 
       <select
@@ -41,7 +46,7 @@ export function FilterBar({ filter, setFilter }: FilterBarProps) {
         <option value="pending">Pending</option>
       </select>
 
-      <select
+      {/* <select
         className="hidden md:block text-xs md:text-base md:px-4 px-2 md:py-2 py-1 bg-white/10 rounded-full border border-white/20"
         value={filter.sortBy}
         onChange={(e) => setFilter({ ...filter, sortBy: e.target.value })}
@@ -49,7 +54,7 @@ export function FilterBar({ filter, setFilter }: FilterBarProps) {
         <option value="date">Date Created</option>
         <option value="unlock-date">Unlock Date</option>
         <option value="name">Name</option>
-      </select>
+      </select> */}
     </div>
   );
 } 

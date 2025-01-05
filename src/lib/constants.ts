@@ -4,6 +4,9 @@ export const emotions = {
   excited: { icon: '🎉' },
   nostalgic: { icon: '🌟' },
   love: { icon: '❤️' },
+  angry: { icon: '😠' },
+  scared: { icon: '😱' },
+  surprised: { icon: '😲' },
 };
 
 export const themes = {

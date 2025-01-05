@@ -22,7 +22,7 @@ const dummyOrbs: Orb[] = [
   {
     id: "2",
     name: "2024 Recap",
-    emotion: "happy, sad, angry, excited, scared, surprised, love",
+    emotion: "happy",
     status: "locked",
     unlockDate: "",
     preview: "/sea.jpg",
@@ -30,18 +30,18 @@ const dummyOrbs: Orb[] = [
   {
     id: "3",
     name: "2023 Recap",
-    emotion: "happy, sad, angry, excited, scared, surprised, love",
+    emotion: "love",
     status: "locked",
     unlockDate: "",
-    preview: "/sea.jpg",
+    preview: "/sunset.png",
   },
   {
     id: "4",
     name: "2022 Recap",
-    emotion: "happy, sad, angry, excited, scared, surprised, love",
+    emotion: "love",
     status: "locked",
     unlockDate: "",
-    preview: "/sea.jpg",
+    preview: "/field.jpg",
   },
   
   // Add more dummy orbs...
