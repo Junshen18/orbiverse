@@ -20,10 +20,16 @@ export function AIAgent() {
       <div
         className={`
         transition-all duration-300 ease-in-out
-        bg-darkpurple/80 backdrop-blur-md rounded-2xl border border-white/10
+        bg-darkpurple/80 backdrop-blur-md rounded-2xl border border-white/10 relative
         ${isMinimized ? "w-16 h-16" : "w-80 h-[40vh]"}
       `}
       >
+        {!isMinimized && (
+          <p className="text-white font-bold text-center text-base z-10 absolute top-4 left-1/2 -translate-x-1/2">
+            Memora
+          </p>
+        )}
+
         <div
           className={`w-full h-full overflow-hidden ${
             isMinimized ? "opacity-50" : "opacity-100"
@@ -41,7 +47,7 @@ export function AIAgent() {
             <div className="flex gap-2">
               <input
                 type="text"
-                placeholder="Ask me anything about creating orbs..."
+                placeholder="Ask Memora anything about creating orbs..."
                 className="w-full px-3 py-2 bg-white/5 rounded-lg border border-white/10 focus:outline-none focus:border-white/20"
               />
               <button className="p-2 bg-white/10 hover:bg-white/20 rounded-lg">
