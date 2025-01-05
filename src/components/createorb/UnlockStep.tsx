@@ -1,3 +1,5 @@
+import dynamic from 'next/dynamic';
+
 type UnlockStepProps = {
   data: {
     type: string;
@@ -7,9 +9,12 @@ type UnlockStepProps = {
   onChange: (data: any) => void;
 };
 
+const MapPicker = dynamic(() => import('./MapPicker'), { ssr: false });
+
 export function UnlockStep({ data, onChange }: UnlockStepProps) {
+  
   return (
-    <div className="space-y-6">
+    <div className="space-y-6 h-full">
       <div>
         <label className="block text-lg font-medium mb-4">Choose Unlock Method</label>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
@@ -69,11 +74,8 @@ export function UnlockStep({ data, onChange }: UnlockStepProps) {
       {data.type === 'location' && (
         <div>
           <label className="block text-sm font-medium mb-2">Select Location</label>
-          <div className="h-64 bg-white/10 rounded-lg border border-white/20">
-            {/* Add map component here */}
-            <div className="flex items-center justify-center h-full text-white/60">
-              Map Component Placeholder
-            </div>
+          <div className="h-auto bg-white/10 rounded-lg border border-white/20">
+            <MapPicker />
           </div>
         </div>
       )}
