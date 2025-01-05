@@ -1,7 +1,6 @@
 "use client";
 
 import { useState } from "react";
-import { useNavigation } from "@/context/NavigationContext";
 import { DashboardHeader } from "@/components/dashboard/DashboardHeader";
 import { OrbData } from "@/lib/types";
 import { StepIndicator } from "@/components/createorb/StepIndicator";
@@ -15,6 +14,7 @@ import { useWallet } from '@solana/wallet-adapter-react';
 import { WalletMultiButton } from '@solana/wallet-adapter-react-ui';
 import { Connection, PublicKey, Transaction, SystemProgram, LAMPORTS_PER_SOL } from '@solana/web3.js';
 import { PaymentModal } from "@/components/createorb/PaymentModal";
+import Confetti from "@/components/ui/confetti";
 
 export default function CreateOrb() {
   const router = useRouter();
@@ -131,6 +131,7 @@ export default function CreateOrb() {
   return (
     <main className="min-h-screen bg-background p-8">
       <DashboardHeader />
+      
       
       <div className="max-w-4xl mx-auto">
         <StepIndicator steps={steps} currentStep={currentStep} />

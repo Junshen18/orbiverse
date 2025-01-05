@@ -1,3 +1,5 @@
+import Confetti from "../ui/confetti";
+
 type PaymentModalProps = {
   status: 'success' | 'error';
   message: string;
@@ -12,11 +14,21 @@ type PaymentModalProps = {
 export function PaymentModal({ status, message, orb, onClose }: PaymentModalProps) {
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
+      {status === 'success' && (
+        <Confetti 
+        autoFire 
+        options={{
+          particleCount: 100,
+          spread: 70,
+          origin: { y: 1, x: 0.5 }  // Center of the screen
+        }}
+        className="absolute left-0 top-0 md:top-[-40%] z-10 size-full pointer-events-none"
+      />
+      )}
       <div 
         className="absolute inset-0 bg-black/60 backdrop-blur-sm"
         onClick={onClose}
       />
-      
       <div className="relative bg-darkpurple border border-white/10 rounded-2xl max-w-96 p-6">
         <div className="flex flex-col items-center text-center">
           {status === 'success' ? (
