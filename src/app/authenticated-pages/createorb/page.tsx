@@ -11,9 +11,14 @@ import { UnlockStep } from "@/components/createorb/UnlockStep";
 import { Preview } from "@/components/createorb/Preview";
 import { saveOrb } from "@/lib/storage";
 import { useRouter } from "next/navigation";
+import { useWallet } from '@solana/wallet-adapter-react';
+import { WalletMultiButton } from '@solana/wallet-adapter-react-ui';
+import { Connection, PublicKey, Transaction, SystemProgram, LAMPORTS_PER_SOL } from '@solana/web3.js';
+import { PaymentModal } from "@/components/createorb/PaymentModal";
 
 export default function CreateOrb() {
   const router = useRouter();
+  const { publicKey, signTransaction, connected } = useWallet();
   const [currentStep, setCurrentStep] = useState(1);
   const [orbData, setOrbData] = useState<OrbData>({
     content: {
@@ -33,6 +38,9 @@ export default function CreateOrb() {
     },
   });
   const [errors, setErrors] = useState<string[]>([]);
+  const [isProcessing, setIsProcessing] = useState(false);
+  const [paymentStatus, setPaymentStatus] = useState<'success' | 'error' | null>(null);
+  const [paymentMessage, setPaymentMessage] = useState('');
 
   const steps = [
     { number: 1, title: "Memory Content" },
@@ -66,11 +74,57 @@ export default function CreateOrb() {
     if (currentStep > 1) setCurrentStep(currentStep - 1);
   };
 
-  const handleCreate = () => {
-    if (validateStep(currentStep)) {
+  const handleCreate = async () => {
+    if (!validateStep(currentStep)) return;
+    
+    if (!connected || !publicKey || !signTransaction) {
+      setErrors(['Please connect your wallet first']);
+      return;
+    }
+
+    try {
+      setIsProcessing(true);
+      
+      // Create a test transaction (sending 0.001 SOL to yourself)
+      const connection = new Connection('https://api.devnet.solana.com');
+      
+      const transaction = new Transaction().add(
+        SystemProgram.transfer({
+          fromPubkey: publicKey,
+          toPubkey: publicKey,
+          lamports: LAMPORTS_PER_SOL * 0.001,
+        })
+      );
+
+      const { blockhash } = await connection.getLatestBlockhash();
+      transaction.recentBlockhash = blockhash;
+      transaction.feePayer = publicKey;
+
+      const signedTransaction = await signTransaction(transaction);
+      const txid = await connection.sendRawTransaction(signedTransaction.serialize());
+      await connection.confirmTransaction(txid);
+      
+      // If payment successful, save the orb
       const savedOrb = saveOrb(orbData);
-      console.log("Orb created:", savedOrb);
+      
+      setPaymentStatus('success');
+      setPaymentMessage('Your memory orb has been successfully created and minted!');
+      
+    } catch (error) {
+      console.error('Transaction error:', error);
+      setPaymentStatus('error');
+      setPaymentMessage('Transaction failed. Please try again.');
+    } finally {
+      setIsProcessing(false);
+    }
+  };
+
+  const handleModalClose = () => {
+    if (paymentStatus === 'success') {
       router.push('/authenticated-pages/dashboard');
+    } else {
+      setPaymentStatus(null);
+      setPaymentMessage('');
     }
   };
 
@@ -80,6 +134,12 @@ export default function CreateOrb() {
       
       <div className="max-w-4xl mx-auto">
         <StepIndicator steps={steps} currentStep={currentStep} />
+
+        {currentStep === 3 && !connected && (
+          <div className="mb-4 flex justify-center">
+            <WalletMultiButton />
+          </div>
+        )}
 
         <div className="mt-8 bg-white/5 backdrop-blur-lg rounded-lg p-6 border border-white/10">
           {currentStep === 1 && (
@@ -113,9 +173,12 @@ export default function CreateOrb() {
             </button>
             <button
               onClick={currentStep === 3 ? handleCreate : handleNext}
-              className="px-4 py-2 bg-white/10 hover:bg-white/20 border border-white/20 rounded-full"
+              disabled={isProcessing}
+              className={`px-4 py-2 bg-white/10 hover:bg-white/20 border border-white/20 rounded-full ${
+                isProcessing ? 'opacity-50 cursor-not-allowed' : ''
+              }`}
             >
-              {currentStep === 3 ? 'Create Orb' : 'Next'}
+              {isProcessing ? 'Processing...' : currentStep === 3 ? 'Create Orb' : 'Next'}
             </button>
           </div>
         </div>
@@ -131,6 +194,23 @@ export default function CreateOrb() {
             <p key={index} className="text-red-400 text-sm">{error}</p>
           ))}
         </div>
+      )}
+
+      {paymentStatus && (
+        <PaymentModal
+          status={paymentStatus}
+          message={paymentMessage}
+          orb={
+            paymentStatus === 'success'
+              ? {
+                  name: orbData.content.title,
+                  preview: orbData.content.images[0] || `/gradient-${Math.floor(Math.random() * 7) + 1}.png`,
+                  walletAddress: publicKey?.toBase58() || '',
+                }
+              : undefined
+          }
+          onClose={handleModalClose}
+        />
       )}
     </main>
   );
