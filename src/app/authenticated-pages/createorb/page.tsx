@@ -15,6 +15,7 @@ import { WalletMultiButton } from '@solana/wallet-adapter-react-ui';
 import { Connection, PublicKey, Transaction, SystemProgram, LAMPORTS_PER_SOL } from '@solana/web3.js';
 import { PaymentModal } from "@/components/createorb/PaymentModal";
 import Confetti from "@/components/ui/confetti";
+import { AIAgent } from "@/components/ui/AIAgent";
 
 export default function CreateOrb() {
   const router = useRouter();
@@ -213,6 +214,9 @@ export default function CreateOrb() {
           onClose={handleModalClose}
         />
       )}
+
+      {/* AI Agent */}
+      <AIAgent />
     </main>
   );
 }

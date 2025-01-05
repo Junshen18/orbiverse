@@ -71,8 +71,17 @@ function OrbCard({ orb, onSelect }: OrbCardProps) {
     onSelect(orb);
   };
 
-  // Check if the preview is a base64 string
-  // const isBase64 = orb.preview.startsWith("data:image");
+  // Format unlock criteria for display
+  const formatUnlockCriteria = (criteria: any) => {
+    if (typeof criteria === 'string') return criteria;
+    if (typeof criteria === 'object') {
+      if (criteria.type === 'date') return 'Date';
+      if (criteria.type === 'location') return 'Location';
+      if (criteria.type === 'manual') return 'Manual';
+      return criteria.type || 'Unknown';
+    }
+    return 'Unknown';
+  };
 
   return (
     <div
@@ -98,7 +107,7 @@ function OrbCard({ orb, onSelect }: OrbCardProps) {
         {/* )} */}
         <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-full" />
       </div>
-      <div className="absolute bottom-[0%] left-[50%] translate-x-[-50%] right-0 p-4 transform translate-y-full group-hover:translate-y-[-50%] transition-transform duration-300">
+      <div className="absolute bottom-[0%] left-[50%] translate-x-[-50%] right-0 p-4 transform translate-y-full md:group-hover:translate-y-[-50%] transition-transform duration-300">
         <h3 className="text-lg font-semibold mb-1 text-center">{orb.name}</h3>
         <div className="flex gap-2 justify-center items-center">
           <span className="px-2 py-1 bg-white/10 rounded-full text-xs">
@@ -108,7 +117,7 @@ function OrbCard({ orb, onSelect }: OrbCardProps) {
             {orb.status}
           </span>
           <span className="px-2 py-1 bg-white/10 rounded-full text-xs">
-            {orb.unlockCriteria}
+            {formatUnlockCriteria(orb.unlockCriteria)}
           </span>
         </div>
       </div>

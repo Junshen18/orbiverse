@@ -7,7 +7,7 @@ type OrbDetailModalProps = {
     name: string;
     emotion: string;
     status: string;
-    unlockCriteria: string;
+    unlockCriteria: any;
     preview: string;
     description: string;
   };
@@ -17,16 +17,31 @@ type OrbDetailModalProps = {
 };
 
 export function OrbDetailModal({ orb, onClose, onHide, isHidden }: OrbDetailModalProps) {
+  const formatUnlockCriteria = (criteria: any) => {
+    if (typeof criteria === 'string') return criteria;
+    if (typeof criteria === 'object') {
+      switch (criteria.type) {
+        case 'date':
+          return `Date: ${new Date(criteria.date).toLocaleDateString()}`;
+        case 'location':
+          return `Location: ${criteria.location.lat.toFixed(2)}, ${criteria.location.lng.toFixed(2)}`;
+        case 'manual':
+          return 'Manual Unlock';
+        default:
+          return criteria.type || 'Unknown';
+      }
+    }
+    return 'Unknown';
+  };
+
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
-      {/* Backdrop */}
       <div 
         className="absolute inset-0 bg-black/60 backdrop-blur-sm"
         onClick={onClose}
       />
       
-      {/* Modal */}
-      <div className="relative bg-darkpurple border border-white/10 rounded-2xl w-full max-w-2xl overflow-hidden">
+      <div className="relative bg-darkpurple border border-white/10 rounded-2xl w-full max-h-[90vh] max-w-2xl overflow-scroll">
         <div className="flex flex-col md:flex-row">
           {/* Image Section */}
           <div className="w-full md:w-1/2 aspect-square">
@@ -64,7 +79,7 @@ export function OrbDetailModal({ orb, onClose, onHide, isHidden }: OrbDetailModa
               <div className="mb-6">
                 <h3 className="text-sm font-medium mb-1">Unlock Criteria</h3>
                 <p className="text-white/70">
-                  {orb.unlockCriteria}
+                  {formatUnlockCriteria(orb.unlockCriteria)}
                 </p>
               </div>
             )}

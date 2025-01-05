@@ -7,6 +7,7 @@ import { useNavigation } from "@/context/NavigationContext";
 import { DashboardHeader } from "@/components/dashboard/DashboardHeader";
 import { FilterBar } from "@/components/dashboard/FilterBar";
 import { OrbGallery } from "@/components/dashboard/OrbGallery";
+import { AIAgent } from "@/components/ui/AIAgent";
 
 export default function Dashboard() {
   const [filter, setFilter] = useState({
@@ -21,6 +22,7 @@ export default function Dashboard() {
       <DashboardHeader />
       <FilterBar filter={filter} setFilter={setFilter} />
       <OrbGallery filter={filter} />
+      <AIAgent />
     </main>
   );
 }
