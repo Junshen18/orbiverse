@@ -2,6 +2,7 @@ import { emotions, themes } from "./constants";
 
 export type OrbData = {
   content: {
+    title: string;
     text: string;
     images: string[];
     files: string[];

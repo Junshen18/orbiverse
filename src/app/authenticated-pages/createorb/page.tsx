@@ -14,6 +14,7 @@ export default function CreateOrb() {
   const [currentStep, setCurrentStep] = useState(1);
   const [orbData, setOrbData] = useState<OrbData>({
     content: {
+      title: "",
       text: "",
       images: [] as string[],
       files: [] as string[],

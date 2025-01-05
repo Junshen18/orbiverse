@@ -9,6 +9,16 @@ export function ContentStep({ data, onChange }: ContentStepProps) {
   return (
     <div className="space-y-6">
       <div>
+        <label className="block text-sm font-medium mb-2">Memory Title</label>
+        <input
+          className="w-full px-4 py-2 bg-white/10 rounded-lg border border-white/20 focus:outline-none focus:border-white/40"
+          placeholder="Enter a title for your memory..."
+          value={data.title}
+          onChange={(e) => onChange({ ...data, title: e.target.value })}
+        />
+      </div>
+
+      <div>
         <label className="block text-sm font-medium mb-2">Memory Description</label>
         <textarea
           className="w-full h-32 px-4 py-2 bg-white/10 rounded-lg border border-white/20 focus:outline-none focus:border-white/40"
