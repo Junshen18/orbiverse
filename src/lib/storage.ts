@@ -57,21 +57,56 @@ const dummyOrbs: Orb[] = [
 ];
 
 export const saveOrb = (orb: OrbData) => {
-  const storedOrbs = getOrbs();
-  const newOrb: StoredOrb = {
-    ...orb,
-    id: Date.now().toString(),
-    createdAt: new Date().toISOString(),
-  };
-  
-  localStorage.setItem('orbs', JSON.stringify([...storedOrbs, newOrb]));
-  return newOrb;
+  try {
+    const storedOrbs = getOrbs();
+    const newOrb: StoredOrb = {
+      ...orb,
+      id: Date.now().toString(),
+      createdAt: new Date().toISOString(),
+    };
+    
+    // Try to save
+    try {
+      localStorage.setItem('orbs', JSON.stringify([...storedOrbs, newOrb]));
+    } catch (e) {
+      if (e.name === 'QuotaExceededError') {
+        // If storage is full, keep only the 10 most recent orbs
+        const recentOrbs = storedOrbs
+          .sort((a, b) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime())
+          .slice(0, 9);
+        
+        localStorage.setItem('orbs', JSON.stringify([...recentOrbs, newOrb]));
+      } else {
+        throw e;
+      }
+    }
+    
+    return newOrb;
+  } catch (error) {
+    console.error('Storage error:', error);
+    // Fallback to session storage if localStorage fails
+    const sessionOrbs = sessionStorage.getItem('orbs');
+    const parsedSessionOrbs = sessionOrbs ? JSON.parse(sessionOrbs) : [];
+    const newOrb: StoredOrb = {
+      ...orb,
+      id: Date.now().toString(),
+      createdAt: new Date().toISOString(),
+    };
+    sessionStorage.setItem('orbs', JSON.stringify([...parsedSessionOrbs, newOrb]));
+    return newOrb;
+  }
 };
 
 export const getOrbs = (): StoredOrb[] => {
-  if (typeof window === 'undefined') return [];
-  const orbs = localStorage.getItem('orbs');
-  return orbs ? JSON.parse(orbs) : [];
+  try {
+    if (typeof window === 'undefined') return [];
+    const orbs = localStorage.getItem('orbs');
+    return orbs ? JSON.parse(orbs) : [];
+  } catch (error) {
+    // Try session storage as fallback
+    const sessionOrbs = sessionStorage.getItem('orbs');
+    return sessionOrbs ? JSON.parse(sessionOrbs) : [];
+  }
 };
 
 export const hideOrb = (orbId: string) => {
